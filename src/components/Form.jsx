@@ -2,14 +2,23 @@ import React from "react"
 import { Input } from "./Input"
 
 export const Form = ({ user, set }) => {
-  
-  const handleSubmit = () => {}
+  const usercopy = {...user}
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+  }
+
+  const handleChange = (e) => {
+    e.preventDefault()
+    const value = e.target.value
+    usercopy[e.target.name] = value
+    set(usercopy)
+  }
 
   return (
-    <Form>
-      handleSubmit={handleSubmit}
-      <Input />
-      <Input />
-    </Form>
+    <form onSubmit={handleSubmit}>
+      <Input handleChange={handleChange} user={user}/>
+    </form>
   )
 }
